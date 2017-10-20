@@ -36,18 +36,18 @@ elasticsearch:
     volumes:
       - elasticsearch1:/usr/share/elasticsearch/data
 
- logstash:
+logstash:
     image: logstash:latest
     command: logstash -e 'input { tcp { port => 5000 } } output { elasticsearch { hosts => "@IP@" } }'
     ports:
-      - "5000:5000"
+        - "5000:5000"
 
- kibana:
+kibana:
     image: kibana
     ports:
-      - "5601:5601"
+        - "5601:5601"
     environment:
-      - ELASTICSEARCH_URL=http://@IP@:9200
+        - ELASTICSEARCH_URL=http://@IP@:9200
 ```
 
 docker-compose up
